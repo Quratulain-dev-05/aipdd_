@@ -207,6 +207,8 @@ flowchart LR
     D -- "List of Alert" --> E[("Event DB / Notifications")]
 ```
 
+The full skeleton code for every module is also provided in [`docs/03_module_design.md`](docs/03_module_design.md) and as importable files in `src/`.
+
 ### 4.1 Module Responsibilities
 
 | Module | File | Responsibility |
@@ -318,6 +320,7 @@ aipdd_project/
 |-- docs/
 |   |-- 01_requirements.md
 |   |-- 02_io_boundary_spec.md
+|   |-- 03_module_design.md
 |   `-- diagrams/        (dfd_level0.mmd/.png, dfd_level1.mmd/.png)
 |-- src/
 |   |-- __init__.py
