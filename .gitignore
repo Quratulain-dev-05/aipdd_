@@ -1,0 +1,27 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# ---- Virtual environments ----
+.venv/
+venv/
+aipdd_env/
+env/
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+
+# ---- Binary model weights ----
+*.pt
+*.onnx
+*.h5
+
+# ---- Logs / OS / IDE ----
+logs/*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
