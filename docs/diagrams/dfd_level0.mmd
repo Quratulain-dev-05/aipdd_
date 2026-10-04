@@ -1,0 +1,14 @@
+flowchart LR
+    CAM["Camera / RTSP Source"]
+    OP["Security Operator"]
+    ADM["Administrator"]
+    NOTIF["Notification Service (SMS / Email / Dashboard)"]
+
+    SYS(("0<br/>AI Object Detection<br/>and Analytics System"))
+
+    CAM -- "Raw video stream (RTSP, H.264)" --> SYS
+    ADM -- "Configuration, model updates, alert rules" --> SYS
+    OP -- "Alert acknowledgements, report queries" --> SYS
+    SYS -- "Live annotated feed, analytics reports" --> OP
+    SYS -- "Alert messages" --> NOTIF
+    SYS -- "System health status, audit logs" --> ADM

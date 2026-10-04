@@ -1,0 +1,39 @@
+flowchart TB
+    CAM["Camera / RTSP Source"]
+    OP["Security Operator"]
+    ADM["Administrator"]
+    NOTIF["Notification Service"]
+
+    P1(("1.0<br/>Ingest Video"))
+    P2(("2.0<br/>Preprocess Frames"))
+    P3(("3.0<br/>Run Model Inference"))
+    P4(("4.0<br/>Post-process Detections"))
+    P5(("5.0<br/>Raise Alerts and Log"))
+    P6(("6.0<br/>Report and Display"))
+
+    D1[("D1 Configuration Store")]
+    D2[("D2 Model Weights Store")]
+    D3[("D3 Detection and Event Log DB")]
+    D4[("D4 Alert Rules Store")]
+
+    CAM -- "Raw video stream" --> P1
+    P1 -- "Decoded frames + timestamp" --> P2
+    P2 -- "Normalised tensors (640x640)" --> P3
+    P3 -- "Raw predictions (boxes, scores, classes)" --> P4
+    P4 -- "Filtered detections (NMS, threshold)" --> P5
+    P4 -- "Annotated frames" --> P6
+
+    ADM -- "Settings" --> D1
+    ADM -- "Trained weights (.pt / .onnx)" --> D2
+    ADM -- "Alert rules" --> D4
+    D1 -- "Stream URL, resolution, thresholds" --> P1
+    D1 -- "Preprocessing parameters" --> P2
+    D2 -- "Loaded model" --> P3
+    D4 -- "Trigger conditions" --> P5
+
+    P5 -- "Event records" --> D3
+    P5 -- "Alert messages" --> NOTIF
+    D3 -- "Historical events" --> P6
+    P6 -- "Live feed, analytics reports" --> OP
+    OP -- "Acknowledgements, queries" --> P6
+    P6 -- "Health status, audit logs" --> ADM
